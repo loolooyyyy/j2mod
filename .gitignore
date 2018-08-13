@@ -21,6 +21,10 @@ atlassian-ide-plugin.xml
 *.db
 smartset.log
 
+build/
+classes/
+z_shared/
+
 # Mac
 .DS_Store
 

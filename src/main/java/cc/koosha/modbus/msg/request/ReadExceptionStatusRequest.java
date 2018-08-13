@@ -1,0 +1,83 @@
+/*
+ * Copyright 2002-2016 jamod & j2mod development teams
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package cc.koosha.modbus.msg.request;
+
+import cc.koosha.modbus.Modbus;
+import cc.koosha.modbus.msg.ModbusResponse;
+import cc.koosha.modbus.msg.response.ReadExceptionStatusResponse;
+import cc.koosha.modbus.procimg.ProcessImage;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
+/**
+ * Class implementing a <tt>Read Exception Status</tt> request.
+ *
+ * @author Julie Haugh (jfh@ghgande.com)
+ * @author jfhaugh (jfh@ghgande.com)
+ * @author Steve O'Hara (4NG)
+ * @version 2.0 (March 2016)
+ */
+public final class ReadExceptionStatusRequest extends AbstractModbusRequest {
+
+    /**
+     * Constructs a new <tt>Read Exception Status</tt> request
+     * instance.
+     */
+    public ReadExceptionStatusRequest() {
+        super();
+
+        setFunctionCode(Modbus.READ_EXCEPTION_STATUS);
+
+        // There is no additional data in this request.
+        setDataLength(0);
+    }
+
+    @Override
+    public ModbusResponse getResponse() {
+        return updateResponseWithHeader(new ReadExceptionStatusResponse());
+    }
+
+    @Override
+    public ModbusResponse createResponse(ProcessImage pi) {
+        return createExceptionResponse(Modbus.ILLEGAL_FUNCTION_EXCEPTION);
+    }
+
+    /**
+     * writeData -- output this Modbus message to dout.
+     * @throws java.io.IOException If the data cannot be written
+     */
+    public void writeData(DataOutput dout) throws IOException {
+        dout.write(getMessage());
+    }
+
+    /**
+     * readData -- dummy function.  There is no data with the request.
+     * @throws java.io.IOException If the data cannot be read
+     */
+    public void readData(DataInput din) throws IOException {
+    }
+
+    /**
+     * getMessage
+     * @return an empty array as there is no data for this request
+     */
+    public byte[] getMessage() {
+
+        return new byte[0];
+    }
+}

@@ -1,0 +1,48 @@
+// Fork of j2mod
+// Developers of j2mod:
+// <description>A Modbus TCP/UDP/Serial Master and Slave implementation</description>
+
+// License:
+// <name>The Apache License, Version 2.0</name>
+// <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group "cc.koosha.modbus"
+version '0.1'
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+    // flatDir {  dirs "$rootProject.projectDir/libs"  }
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+} 
+test { 
+    useTestNG() 
+}
+idea {
+  module {
+    outputDir = file('build')
+    inheritOutputDirs = true
+    downloadJavadoc = true
+    downloadSources = true
+  }
+}  
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'javax.inject:javax.inject:1'
+
+    compile 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor "org.projectlombok:lombok:1.18.2"
+
+    compileOnly 'com.fazecast:jSerialComm:2.1.1'
+    compileOnly 'com.google.guava:guava:25.1-jre'
+}
+

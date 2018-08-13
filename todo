@@ -1,0 +1,27 @@
+timeouts
+
+
+state in doc about fazecast waitBetweenFrames
+
+debug levels
+
+serial port not available, test?
+
+allow dup addr, don't via builder
+
+
+delegating for all final classes
+
+
+security host black list as proposed on page 9 of modbus tcp spec
+ip whitelist by default if sec enabled.
+
+both managed and unmanged tcp connection as the spec says.
+close the oldest unused connection in case of exceeded authorized connections, for pool
+marked and unmarked connections
+priority pool
+4.2.2.1
+TCP no delay, keep alive
+
+
+serial tcp gateway
